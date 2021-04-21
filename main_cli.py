@@ -2,9 +2,7 @@ from risk_diagrams import run_risk_diagrams
 import os, sys
 import requests
 
-
-if __name__ == "__main__":
-
+def ourworldindata(radio_valor):
     Africa = ['Nigeria', 'South Africa','Malawi', 'Morocco','Africa','Zambia', 'Namibia',
     'Senegal','Gabon', 'Botswana', 'Mozambique','Libya', 'Egypt', 'Sao Tome and Principe', 'Tunisia']
     Europe = ['Spain', 'Portugal', 'France', 'Italy', 'Sweden', 'United Kingdom', 'Andorra', 'Germany']
@@ -13,16 +11,6 @@ if __name__ == "__main__":
     NorthAmerica = ['Canada', 'United States']
     Oceania = ['Australia','Papua New Guinea', 'New Zealand', 'Fiji']
     ourworldindata_country = [Africa, Europe, South_America, MiddleEast, NorthAmerica, Oceania]
-
-    # 0 None | 1 last_days | 2 html 
-    radio_valor = 1
-    run_risk_diagrams('brasil_regions', 'False', None, None, radio_valor, None)
-    radio_valor = 2
-    run_risk_diagrams('brasil_regions', 'False', None, None, radio_valor, None)
-    sys.exit()
-    run_risk_diagrams('recife', 'False', None, None, radio_valor, None)
-    run_risk_diagrams('brasil', 'False', None, None, radio_valor, None)
-    #run_risk_diagrams('WCOTA', 'False', None, None, radio_valor, None)
 
     print('Donwload ourwoldindata')
     url = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
@@ -38,4 +26,19 @@ if __name__ == "__main__":
         for j in ourworldindata_country[i]:
             run_risk_diagrams('ourworldindata', 'False', None, None, radio_valor, j)
 
+if __name__ == "__main__":
+
+    #radio_valor =  0 None | 1 last_days | 2 html 
+    radio_valor = 1
+    run_risk_diagrams('brasil_regions', 'False', None, None, radio_valor, None)
+    run_risk_diagrams('recife', 'False', None, None, radio_valor, None)
+    run_risk_diagrams('brasil', 'False', None, None, radio_valor, None)
+    ourworldindata(radio_valor)
+    radio_valor = 2
+    run_risk_diagrams('brasil_regions', 'False', None, None, radio_valor, None)
+    run_risk_diagrams('recife', 'False', None, None, radio_valor, None)
+    run_risk_diagrams('brasil', 'False', None, None, radio_valor, None)
+    ourworldindata(radio_valor)
+   
+    #run_risk_diagrams('WCOTA', 'False', None, None, radio_valor, None)
     sys.exit()
