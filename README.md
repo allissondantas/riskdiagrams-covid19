@@ -17,6 +17,8 @@ Run in command line:
 ```sh
 $python3 main_cli.py
 ```
+### Citation  
+M. Català, P. J. Cardona, C. Prats, S. Alonso, E. Alvarez-Lacalle, M. Marchena, D. Conesa, and D. Lopez, “Analysis and prediction of COVID-19 for EU-EFTA-UK and other countries,” Report de recerca, Dec. 2020.Available at: http://hdl.handle.net/2117/334061.
 
 License
 ---- 

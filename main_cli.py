@@ -7,10 +7,11 @@ def ourworldindata(radio_valor):
     'Senegal','Gabon', 'Botswana', 'Mozambique','Libya', 'Egypt', 'Sao Tome and Principe', 'Tunisia']
     Europe = ['Spain', 'Portugal', 'France', 'Italy', 'Sweden', 'United Kingdom', 'Andorra', 'Germany']
     South_America = ['Chile', 'Brazil', 'Argentina', 'Bolivia', 'Colombia', 'Ecuador', 'Peru', 'Paraguay', 'Uruguay', 'Suriname', 'Venezuela', 'Guyana']
+    Central_America = ['Guatemala']
     MiddleEast = ['Israel', 'Palestine', 'United Arab Emirates', 'Turkey']
     NorthAmerica = ['Canada', 'United States']
     Oceania = ['Australia','Papua New Guinea', 'New Zealand', 'Fiji']
-    ourworldindata_country = [Africa, Europe, South_America, MiddleEast, NorthAmerica, Oceania]
+    ourworldindata_country = [Africa, Europe, South_America, MiddleEast, NorthAmerica, Oceania, Central_America]
 
     print('Donwload ourwoldindata')
     url = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
@@ -41,4 +42,5 @@ if __name__ == "__main__":
     ourworldindata(radio_valor)
    
     #run_risk_diagrams('WCOTA', 'False', None, None, radio_valor, None)
+
     sys.exit()
