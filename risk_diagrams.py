@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 import base64
 import os
 
-matplotlib.use('tkagg')
+matplotlib.use('agg')
 
 
 def plotly_html(a_14_days, p_seven, dia, bra_title, save_path, filename_bg):
