@@ -41,18 +41,13 @@ def run_crear_excel_brasil():
 
     unique_dates = dados_semTotal.index.get_level_values('date').unique()
     dfByTotalCases = dataFramePorColuna('totalCases', unique_dates, siglasEstados, dados_semTotal)
-    #dfByTotalDeaths = dataFramePorColuna('deaths', unique_dates, siglasEstados, dados_semTotal)
     
     dfByTotalCases.columns = nameEstados
     dfByTotalCasesRegions = crear_excel_brasil_estados(dfByTotalCases)
 
-
-    #dfByTotalDeaths.columns = nameEstados
-    #print(dfByTotalCases.columns)
     with ExcelWriter('data/Data_Brasil.xlsx') as writer:
 
         dfByTotalCases.to_excel(writer, sheet_name='Cases')
-        #dfByTotalDeaths.to_excel(writer, sheet_name='Deaths')
         dfByTotalCasesRegions.to_excel(writer, sheet_name='Regions')
 
 

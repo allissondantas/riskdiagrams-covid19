@@ -1,9 +1,7 @@
-import sys
 import pandas as pd
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
 from get_data_brasil import run_crear_excel_brasil
 from get_data_brasil_wcota import run_crear_excel_brasil_wcota
 from get_data_pernambuco import run_crear_excel_recife
@@ -11,7 +9,6 @@ from get_data_ourworldindata import run_crear_excel_ourworldindata
 from pandas import ExcelWriter
 import colormap
 import plotly.graph_objects as go
-from PIL import Image
 import base64
 import os
 
@@ -147,11 +144,8 @@ def run_risk_diagrams(argv_1, deaths, file_others_cases, file_others_pop, radio_
 
     if argv_1:
         last_days_time = 30
-        brasil = False
-        pt = False
         html = False
         last_days = False
-        animation = False
 
         if radio_valor == 1:
             last_days = True
@@ -192,15 +186,9 @@ def run_risk_diagrams(argv_1, deaths, file_others_cases, file_others_pop, radio_
 
         elif argv_1 == 'WCOTA':
             try:
-                #run_crear_excel_brasil_wcota('AM')
-                #run_crear_excel_brasil_wcota('PB')
                 run_crear_excel_brasil_wcota('SP')
                 filename = 'data/cases-wcota.xlsx'
-                #filename_population = 'data/pop_AM_v1.xlsx'
                 filename_population = 'data/pop_SP_v1.xlsx'
-                #filename_population = 'data/pop_PB_v1.xlsx'
-                #filename = 'data/Dades.xlsx'
-                #filename_population = 'data/pop_Dades.xlsx'
                 sheet_name = 'Cases'
 
             except AttributeError:
@@ -234,13 +222,13 @@ def run_risk_diagrams(argv_1, deaths, file_others_cases, file_others_pop, radio_
         for ID in range(len(region)):
             cumulative_cases = data[region[ID]]
             cumulative_cases = cumulative_cases.to_numpy()
-            new_cases = np.zeros((len(cumulative_cases)), dtype=np.int)
+            new_cases = np.zeros((len(cumulative_cases)), dtype=int)
             for i in range(len(cumulative_cases)):
                 if i != 0:
                     new_cases[i] = cumulative_cases[i] - \
                         cumulative_cases[i - 1]
                  
-            p = np.zeros((len(new_cases)), dtype=np.float)
+            p = np.zeros((len(new_cases)), dtype=float)
             for i in range(7, len(new_cases)):
                 div = 0
                 aux = new_cases[i - 5] + new_cases[i - 6] + new_cases[i - 7]
@@ -251,11 +239,11 @@ def run_risk_diagrams(argv_1, deaths, file_others_cases, file_others_pop, radio_
                 p[i] = min((new_cases[i] + new_cases[i - 1] +
                             new_cases[i - 2]) / div, 4)
 
-            p_seven = np.zeros((len(new_cases)), dtype=np.float)
-            n_14_days = np.zeros((len(new_cases)), dtype=np.float)
-            a_14_days = np.zeros((len(new_cases)), dtype=np.float)
-            risk = np.zeros((len(new_cases)), dtype=np.float)
-            risk_per_10 = np.zeros((len(new_cases)), dtype=np.float)
+            p_seven = np.zeros((len(new_cases)), dtype=float)
+            n_14_days = np.zeros((len(new_cases)), dtype=float)
+            a_14_days = np.zeros((len(new_cases)), dtype=float)
+            risk = np.zeros((len(new_cases)), dtype=float)
+            risk_per_10 = np.zeros((len(new_cases)), dtype=float)
 
             day13 = 13
 
@@ -288,6 +276,8 @@ def run_risk_diagrams(argv_1, deaths, file_others_cases, file_others_pop, radio_
             save_path_xlsx = 'static_graphic/xlsx/'
 
             fig1, ax1 = plt.subplots(sharex=True)
+            del fig1
+
             if last_days:
                 ax1.plot(a_14_days,  p_seven, 'ko--', fillstyle='none',
                          linewidth=0.5, color=(0, 0, 0, 0.15))

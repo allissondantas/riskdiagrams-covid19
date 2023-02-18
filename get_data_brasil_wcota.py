@@ -1,8 +1,6 @@
 import pandas as pd
 from pandas import ExcelWriter
 import sys
-import gzip, shutil
-
 
 
 #url = "https://github.com/wcota/covid19br/blob/master/cases-brazil-cities-time.csv.gz"
@@ -42,5 +40,3 @@ def dataFramePorColuna(coluna, unique_dates, siglasEstados, dados_semTotal):
     resul.fillna(0, inplace=True)
     resul['TOTAL'] = resul.sum(axis=1)
     return resul
-
-#run_crear_excel_brasil_wcota('SP')
