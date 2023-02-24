@@ -1,5 +1,5 @@
 from risk_diagrams import run_risk_diagrams
-import os, sys
+import sys
 import requests
 
 def ourworldindata(radio_valor):
@@ -41,6 +41,4 @@ if __name__ == "__main__":
     run_risk_diagrams('brasil', 'False', None, None, radio_valor, None)
     ourworldindata(radio_valor)
    
-    #run_risk_diagrams('WCOTA', 'False', None, None, radio_valor, None)
-
     sys.exit()

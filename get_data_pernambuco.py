@@ -1,7 +1,5 @@
 import pandas as pd
 from pandas import ExcelWriter
-from get_data_brasil import dataFramePorColuna
-from datetime import datetime
 import requests
 
 path_recife = 'https://raw.githubusercontent.com/edneide/covid-19_Pernambuco/master/total_cases_PE.csv'
@@ -27,6 +25,3 @@ def run_crear_excel_recife():
 
 if __name__ == '__main__':
     run_crear_excel_recife()
-
-
-

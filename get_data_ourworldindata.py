@@ -1,15 +1,10 @@
 import pandas as pd
 from pandas import ExcelWriter
-from datetime import datetime
-import requests
 
-#path = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 save_filename = 'data/ourworldindata.xlsx'
 save_filename_pop = 'data/pop_ourworldindata_v1.xlsx'
 
 def run_crear_excel_ourworldindata(country):
-    #link = requests.get(path, stream=True)
-    #data = pd.read_csv(link.url)
     data = pd.read_csv('data/owid-covid-data.csv')
     is_country = data['location'] == country
     data_country = data[is_country]
